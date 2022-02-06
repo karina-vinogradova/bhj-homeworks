@@ -35,12 +35,24 @@ prev.onclick = () => {
 }
 
 const arrDots = Array.from(sliderDots);
-for (let i = 0; i < arrDots.length; i++) {
-    arrDots[i].onclick = () => {
-        count = i;
-        switchSlider(count);
+
+arrDots.findIndex(
+    function dotIndex(element, index) {
+        element.onclick = () => {
+            console.log(index);//- вывожу индекс элемента, который был нажат. Как мне его передать?            
+        } 
+       return //index;
     }
-}
+);
+
+
+// console.log(res)
+// for (let i = 0; i < arrDots.length; i++) {
+//     arrDots[i].onclick = () => {
+//         count = i;
+//         
+//     }
+// }
 
 switchSlider(count);
 
