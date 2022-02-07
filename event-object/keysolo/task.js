@@ -16,14 +16,25 @@ class Game {
     this.lossElement.textContent = 0;
   }
 
-  registerEvents() {
+  registerEvents(event) {
     /*
       TODO:
       Написать обработчик события, который откликается
       на каждый введённый символ.
       В случае правильного ввода слова вызываем this.success()
       При неправильном вводе символа - this.fail();
-     */
+     */      
+
+    document.addEventListener('keydown', (event) => {
+      const symbol = this.currentSymbol.textContent;
+      const inputSymbol = event.key;
+      if (inputSymbol === symbol) {
+              this.success();
+            } else {
+              this.fail();
+            }
+    });
+
   }
 
   success() {
