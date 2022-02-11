@@ -12,13 +12,7 @@ for (let link of linksMenu) {
                 active.classList.remove('menu_active');
             }
 
-            element.classList.add('menu_active');
-            
-            if (element && element.classList.contains('menu_active')) {
-                link.onclick = () => {
-                active.classList.remove('menu_active');
-                }
-            }
+            element.classList.toggle('menu_active');
 
             return false;
         

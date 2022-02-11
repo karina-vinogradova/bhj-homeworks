@@ -1,59 +1,49 @@
 const next = document.querySelector('.slider__arrow_next');
 const prev = document.querySelector('.slider__arrow_prev');
-const sliderDots = document.querySelectorAll('.slider__dot')
-const sliderItems = document.querySelectorAll('.slider__item');
+const sliderDots = Array.from(document.querySelectorAll('.slider__dot'));
+const sliderItems = Array.from(document.querySelectorAll('.slider__item'));
 
-let count = 0;
+sliderDots[0].classList.add('slider__dot_active');
 
-function switchSlider(index) {
-    if (index > sliderItems.length - 1) {
-        count = 0;
-    }
-
-    if (index < 0) {
-        count = sliderItems.length - 1;
-    }
-
-    for (let item of sliderItems) {
-        item.classList.remove('slider__item_active');
-    }
-
-    for (let item of sliderDots) {
-        item.classList.remove('slider__dot_active');
-    }
-
-   sliderItems[count].classList.add('slider__item_active');
-   sliderDots[count].classList.add('slider__dot_active');
-}
 
 next.onclick = () => {
-    switchSlider(count += 1);
+    const activeItem = sliderItems.findIndex(slide => slide.classList.contains('slider__item_active'));
+    if (activeItem === sliderItems.length - 1) {
+        sliderItems[activeItem].classList.remove('slider__item_active');
+        sliderItems[0].classList.add('slider__item_active');
+
+        sliderDots[activeItem].classList.remove('slider__dot_active');
+        sliderDots[0].classList.add('slider__dot_active');
+    } else {       
+        sliderItems[activeItem].classList.remove('slider__item_active');
+        sliderItems[activeItem + 1].classList.add('slider__item_active');
+
+        sliderDots[activeItem].classList.remove('slider__dot_active');
+        sliderDots[activeItem + 1].classList.add('slider__dot_active');
+    }
 }
 
 prev.onclick = () => {
-    switchSlider(count -= 1)
+    const activeItem = sliderItems.findIndex(slide => slide.classList.contains('slider__item_active'));
+    if (activeItem === 0) {
+        sliderItems[0].classList.remove('slider__item_active');
+        sliderItems[sliderItems.length - 1].classList.add('slider__item_active');
+
+        sliderDots[0].classList.remove('slider__dot_active');
+        sliderDots[sliderItems.length - 1].classList.add('slider__dot_active');
+    } else {
+        sliderItems[activeItem].classList.remove('slider__item_active');
+        sliderItems[activeItem - 1].classList.add('slider__item_active');
+
+        sliderDots[activeItem].classList.remove('slider__dot_active');
+        sliderDots[activeItem - 1].classList.add('slider__dot_active');
+    }
 }
 
-const arrDots = Array.from(sliderDots);
-
-arrDots.findIndex(
-    function dotIndex(element, index) {
-        element.onclick = () => {
-            console.log(index);//- вывожу индекс элемента, который был нажат. Как мне его передать?            
-        } 
-       return //index;
-    }
-);
-
-
-// console.log(res)
-// for (let i = 0; i < arrDots.length; i++) {
-//     arrDots[i].onclick = () => {
-//         count = i;
-//         
+// Переключение изображение по точкам теперь не работает, так как я не знаю как сделать это используя findIndex
+// const activeDot = sliderDots.findIndex(slideDot => slideDot.classList.contains('slider__dot_active'));
+// for (let dot of sliderDots) {
+//     dot.onclick = () => {
+//         dot.classList.add('slider__dot_active');
 //     }
 // }
-
-switchSlider(count);
-
-
