@@ -42,7 +42,7 @@ function addBasket(event) {
 	} else {
 		let checkBasket = contentBasket.find((e) => e.dataset.id === productId);
 
-		if(checkBasket === undefined) {
+		if(!checkBasket) {
 			basket.insertAdjacentHTML('afterBegin', addBlock);
 		} else {
 			checkBasket.querySelector('.cart__product-count').textContent = quantity + Number(checkBasket.querySelector('.cart__product-count').textContent);
@@ -51,14 +51,14 @@ function addBasket(event) {
 	}
 }
 
-for (i of inc) {
+for (let i of inc) {
     i.addEventListener('click', incQuantityProducts);
 }
 
-for (d of dec) {
+for (let d of dec) {
     d.addEventListener('click', decQuantityProducts);
 }
 
-for (btn of addButton) {
+for (let btn of addButton) {
     btn.addEventListener('click', addBasket);
 }
