@@ -12,7 +12,7 @@ function setCookie(name, value) {
 }
 
 function deleteCookie(name) {
-    document.cookie = `${name}=; Expires=Mon, 11 Apr 2022 00:00:00 GMT`;
+    document.cookie = `${name}=; max-age=0`;
 }
 
 function openPopup() {
@@ -38,7 +38,7 @@ function openPopup() {
     });
 }
 
-// deleteCookie('popup');
+deleteCookie('popup');
 
 
 
