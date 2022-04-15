@@ -45,3 +45,21 @@
   display: block;
   text-align: center;
 }
+
+
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.signout {
+  display: none;
+}
+
+.signout__active{
+  display: flex;  
+}
+
+.signin__unvisible {
+  display: none;
+}
